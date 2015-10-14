@@ -8,8 +8,16 @@ export class Person {
     this.repos = [];
   }
 
+  static endpoint(path) {
+    return `https://api.github.com${path}`;
+  }
+
+  get url() {
+    return Person.endpoint(`/users/${this.name}`);
+  }
+
   get repoUrl() {
-    return `https://api.github.com/users/${this.name}/repos?per_page=100`;
+    return Person.endpoint(`/users/${this.name}/repos?per_page=100`);
   }
 
   toString() {
@@ -17,14 +25,18 @@ export class Person {
   }
 
   load() {
-    return getJSON(this.repoUrl).then(repos => {
+    return Promise.all([
+      getJSON(this.url),
+      getJSON(this.repoUrl)
+    ]).then(([user, repos]) => {
+      this.avatar_url = user.avatar_url;
       this.repos = repos;
       return this;
     });
   }
 
   rank() {
-    return this.repos.length;
+    return this.repos.reduce((prev, current) => current.watchers + prev, 0);
   }
 
   ties(person) {

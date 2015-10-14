@@ -1,11 +1,15 @@
 'use strict';
 
 import { Person } from './person';
-import battle from './battle';
+import { render } from './render';
+import { battle } from './battle';
 
-const personA = new Person('epixa');
-const personB = new Person('nicksergeant');
+const people = location.search
+  .substr(1).split(',')
+  .map(name => new Person(name));
+
+const [ personA, personB ] = people;
 
 battle(personA, personB)
-  .then(winner => console.log(`The winner is ${winner}!`))
+  .then(winner => render(document, personA, personB, winner))
   .catch(err => console.error(':(', err));

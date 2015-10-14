@@ -1,0 +1,33 @@
+* { margin: 0; padding: 0; }
+
+h1, section {
+  margin: 50px auto 0;
+  text-align: center;
+  width: 800px;
+}
+
+avatar img {
+  width: 100px;
+}
+
+#tie {
+  display: none;
+}
+
+#people {
+  display: none;
+}
+
+person {
+  display: inline-block;
+  padding: 20px 0;
+  width: 20%;
+}
+
+  person.winner {
+    background-color: #6b3;
+  }
+
+name, rank {
+  display: block;
+}

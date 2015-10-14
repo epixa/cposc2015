@@ -1,7 +1,7 @@
 'use strict';
 
 // load the given persons and fight!
-export default function battle(a, b) {
+export function battle(a, b) {
   return Promise
     .all([ a.load(), b.load() ])
     .then(([ a, b ]) => winner(a, b));
@@ -9,7 +9,7 @@ export default function battle(a, b) {
 
 // who is the winner?
 // null means no one wins, it is a tie
-function winner(a, b) {
+export function winner(a, b) {
   if (a.ties(b)) {
     return null;
   }
