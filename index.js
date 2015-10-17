@@ -11,5 +11,5 @@ const people = location.search
 const [ personA, personB ] = people;
 
 battle(personA, personB)
-  .then(winner => render(document, personA, personB, winner))
+  .then(winner => render(personA, personB, winner))
   .catch(err => console.error(':(', err));

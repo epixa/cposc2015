@@ -1,7 +1,7 @@
 'use strict';
 
 // render the results
-export function render(element, a, b, winner) {
+export function render(a, b, winner) {
   const loading = document.getElementById('loading');
   const tie = document.getElementById('tie');
   const people = document.getElementById('people');
